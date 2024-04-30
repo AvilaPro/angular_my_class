@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
   <div class="row">
     <h2 class="text-center text-primary">Iniciar Sesion</h2>
@@ -19,3 +20,4 @@
     </form>
   </div>
 </div>
+<app-hijo-login [correoHijo]="user.email" (cambiarDatoDesdeHijo)="user.email = $event"></app-hijo-login>
