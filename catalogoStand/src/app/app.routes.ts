@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
+import { horarioGuard } from './guardians/horario.guard';
 
 export const routes: Routes = [
   {
@@ -14,11 +15,12 @@ export const routes: Routes = [
   },
   {
     path: 'catalogo',
-    component: CatalogoComponent
+    component: CatalogoComponent,
+    canActivate: [horarioGuard]
   },
   {
     path: '',
-    redirectTo: '/catalogo',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];

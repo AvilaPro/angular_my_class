@@ -1,12 +1,18 @@
 <app-header></app-header>
 <div class="container">
   <div class="row">
-    <div *ngFor="let producto of productos" class="card col-3">
-      <img [src]=producto.img class="card-img-top" alt="...">
+    <div class="col-12">
+      <h1>Productos</h1>
+      <button class="btn btn-primary" (click)="cambiarMoneda()">Cambiar Moneda</button>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let producto of productos" class="card col-4">
+      <img [src]=producto.img class="img-fluid" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{producto.nombre}}</h5>
         <p class="card-text">{{producto.descripcion}}</p>
-        <p class="text-success">{{producto.precio}}</p>
+        <p class="text-success">{{producto.precio | dolarToday: moneda : 40 | currency: moneda  }}</p>
         <a href="#" class="btn btn-secondary" onclick="this.event.preventDefault">Comprar</a>
       </div>
     </div>

@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../header/header.component';
-import { NgFor } from '@angular/common';
+import { CurrencyPipe, NgFor } from '@angular/common';
+import { DolarTodayPipe } from '../../pipes/dolar-today.pipe';
 
 @Component({
   selector: 'app-catalogo',
   standalone: true,
-  imports: [HeaderComponent, NgFor],
+  imports: [HeaderComponent, NgFor, CurrencyPipe, DolarTodayPipe],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.scss'
 })
 export class CatalogoComponent {
+
+  dolar: boolean = true;
+  moneda: string = 'USD'
 
   productos = [
     {
@@ -55,5 +59,13 @@ export class CatalogoComponent {
       img: `https://picsum.photos/id/${Math.round(Math.random()*400)}/100/100`
     }
   ]
+
+  cambiarMoneda(){
+    this.moneda = this.coin
+  }
+  get coin(){
+    this.dolar = !this.dolar;
+    return this.dolar ? 'USD' : 'VED';
+  }
 
 }
