@@ -3,6 +3,11 @@ import { HeaderComponent } from '../../header/header.component';
 import { FormControl, FormGroup, ReactiveFormsModule, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
 
+// Importamos el servicio de usuario
+import { UsersService } from "../../services/users.service";
+//Importamos la interfaz del User
+import { User } from '../../interfaces/user';
+
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -14,7 +19,11 @@ export class RegisterComponent {
   fb = new FormBuilder();
   registerForm: any;
 
-  constructor() {
+  nombre: string = '';
+  trabajo: string = '';
+
+
+  constructor(private userService: UsersService) {
     this.registerForm = this.fb.nonNullable.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-z ]*')]],
       phone: '',
@@ -52,6 +61,23 @@ export class RegisterComponent {
   onSubmit() {
     // TODO: Use EventEmitter with form value
     console.log(this.registerForm.value);
+  }
+
+  registrarUsuario(){
+    console.log(this.nombre);
+    this.userService.createUser(this.nombre, this.trabajo);
+  }
+
+  actualizarUsuario(){
+    let usuarioActualizado: User = {
+      name: 'Luis',
+      job: 'Professor'
+    }
+    this.userService.updateUser(usuarioActualizado);
+  }
+
+  eliminarUsuario(){
+    this.userService.deleteUser(2);
   }
 
 }
