@@ -1,9 +1,32 @@
-<div>
-  <form action="">
-    <input type="text" [(ngModel)]="username" name="username" id="username"  placeholder="Username here...">
-    <input type="password" [(ngModel)]="password" name="password" id="password" placeholder="Placeholder here...">
+<div class="container p-5">
+  <h1 class="text-primary text-center">Iniciar Sesion</h1>
+  <form class="row flex-column justify-content-center p-4 border border-4 rounded-4 border-primary " action="" (submit)="sendForm()" #formLogin="ngForm">
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="floatingInput" placeholder="Username..." [(ngModel)]="username" name="username" (blur)="verInfoForm(formLogin, usernameInput)" required minlength="4" #usernameInput="ngModel">
+      <label for="floatingInput">Username</label>
+    </div>
+    <div *ngIf="usernameInput.invalid && (usernameInput.touched || usernameInput.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="usernameInput.errors?.['required']">
+        El campo no debe quedar vacio
+      </div>
+      <div *ngIf="usernameInput.errors?.['minlength']">
+        El campo debe tener mas de 3 caracteres
+      </div>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="password" name="password" #passwordInput="ngModel" required minlength="8">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div *ngIf="passwordInput.invalid && (passwordInput.touched || passwordInput.dirty)" class="alert alert-danger" role="alert">
+      <div *ngIf="passwordInput.errors?.['required']">
+        El campo no debe quedar vacio
+      </div>
+      <div *ngIf="passwordInput.errors?.['minlength']">
+        El campo debe tener mas de 7 caracteres
+      </div>
+    </div>
 
-    <button type="button" (click)="iniciarSesion()">Iniciar Sesion</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!formLogin.valid">Iniciar Sesion</button>
   </form>
 
 </div>
