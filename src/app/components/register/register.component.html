@@ -1,0 +1,32 @@
+<!-- Agregar formulario para registrar mascotas de un propietario. El propietario solo debe colocar su nombre y telefono y de forma dinamica con formArray de Angular debe crear los inputs para registrar sus animales, indicando su nombre y especie. -->
+ <div class="container">
+  <label for="">Nombre Propietario:</label>
+  <h1>{{nombre}}</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <form [formGroup]="registro" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre" [(ngModel)]="nombre">
+            <label for="telefono">Telefono:</label>
+            <input type="text" class="form-control" id="telefono" formControlName="telefono">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <button type="button" class="btn btn-primary" (click)="agregarMascota()">Add Pet</button>
+            <button type="button" class="btn btn-primary" (click)="eliminarMascota()">Remove Pet</button>
+            <div *ngFor="let mascota of mascotas.controls; let i = index">
+              <div style="padding: 7px; border: solid 3px lightseagreen; border-radius: 22px; margin: 8px 0;">
+                <label for="alias-{{i}}">Nombre: </label>
+                <input type="text" id="alias-{{i}}" [(ngModel)]="mascota.value.nombre" [ngModelOptions]="{standalone: true}" abstractControlName="mascota.controls.nombre">
+                <hr>
+                <label for="especie-{{i}}">Especie: </label>
+                <input type="text" id="especie-{{i}}" [(ngModel)]="mascota.value.especie" [ngModelOptions]="{standalone: true}" abstractControlName="mascota.controls.especie">
+              </div>
+            </div>
+        </div>
+      </form>
+      <button class="btn btn-secondary" (click)="cambiarNombreEnRegister()">cambiar nombre</button>
+    </div>
+  </div>
+ </div>
+ <!-- Componente Hijo Dashboard -->
+<app-dashboard [nombrePropietario]="registro.value" (cambiarNombreDesdeDashboard)="nombre = $event"></app-dashboard>

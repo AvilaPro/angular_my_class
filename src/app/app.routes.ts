@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from "./components/register/register.component";
 
 export const routes: Routes = [
     //login
@@ -7,6 +8,10 @@ export const routes: Routes = [
       path: 'login',
       component: LoginComponent,
       pathMatch: 'full'
+    },
+    {
+      path: 'register',
+      component: RegisterComponent,
     },
     //ruta por defecto a login
     {

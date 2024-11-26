@@ -1,0 +1,5 @@
+<label for="">Nombre Propietario:</label>
+<h1>{{nombrePropietario.nombre}}</h1>
+
+<hr>
+<input type="text" placeholder="Cambio Nombre Actual" [(ngModel)]="nombrePropietario.nombre" (change)="metodoCambiarNombre()">
