@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
+  constructor(private router:Router){}
+
   iniciarSesion(){
     console.log(this.username, this.password);
   }
@@ -22,6 +25,10 @@ export class LoginComponent {
   verInfoForm(form: any, input: any){
     console.log(form);
     console.log(input);
+  }
+
+  openComponent(path: string){
+    this.router.navigate([path]);
   }
 
 }

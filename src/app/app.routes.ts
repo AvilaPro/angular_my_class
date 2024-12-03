@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from "./components/register/register.component";
+import { ProductsComponent } from './components/products/products.component';
+import { horarioGuard } from './guardians/horario.guard';
 
 export const routes: Routes = [
     //login
@@ -12,6 +14,11 @@ export const routes: Routes = [
     {
       path: 'register',
       component: RegisterComponent,
+    },
+    {
+      path: 'products',
+      component: ProductsComponent,
+      canActivate: [horarioGuard]
     },
     //ruta por defecto a login
     {

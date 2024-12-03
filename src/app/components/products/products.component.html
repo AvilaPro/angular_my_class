@@ -1,0 +1,15 @@
+<h1 class="text-center mt-4">Catalogo de Productos - {{fecha | date: 'dd/M/yyyy'}}</h1>
+<button class="btn btn-primary ms-5" (click)="cambiarMoneda()">{{monedaSymbol}}</button>
+<div class="container mt-5">
+  <div class="row gap-3 justify-content-center">
+    <div class="col-md-4 col-lg-3 col-12 card" *ngFor="let product of products">
+      <img [src]="product.image" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title | uppercase}}</h5>
+        <p class="card-text">{{product.description}}.</p>
+        <p class="card-price">{{(moneda === "USD" ? product.price : product.price * tasaBCV) | currency: moneda : monedaSymbol}}</p>
+        <a class="btn btn-success">Comprar</a>
+      </div>
+    </div>
+  </div>
+</div>
