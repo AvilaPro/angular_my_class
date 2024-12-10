@@ -3,6 +3,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from "./components/register/register.component";
 import { ProductsComponent } from './components/products/products.component';
 import { horarioGuard } from './guardians/horario.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     //login
@@ -19,6 +20,10 @@ export const routes: Routes = [
       path: 'products',
       component: ProductsComponent,
       canActivate: [horarioGuard]
+    },
+    {
+      path: 'dashboard',
+      component: DashboardComponent
     },
     //ruta por defecto a login
     {
